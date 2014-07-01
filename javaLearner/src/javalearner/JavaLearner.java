@@ -18,6 +18,7 @@ public class JavaLearner {
     public static void main(String[] args) {
         // TODO code application logic here
         System.out.println("Git initiated");
+        System.out.println("code modified");
     }
     
 }
