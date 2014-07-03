@@ -42,7 +42,7 @@ class investment {
                     if(i==maxYear)
                     System.out.println(" ");
                 }
-                V=P;
+                V=P+1000;
                 r=r+0.01;
             }
             P=P+1000;
