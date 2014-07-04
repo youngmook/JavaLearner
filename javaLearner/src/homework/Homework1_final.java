@@ -10,7 +10,7 @@ package homework;
  *
  * @author melonPeach
  */
-public class Homework1 {
+public class Homework1_final {
     public static void main(String[] args){
         int minPrincipal=1000; int maxPrincipal=10000;
         double minRate=0.10; double maxRate=0.20;
