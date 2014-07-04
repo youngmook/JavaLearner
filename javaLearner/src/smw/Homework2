@@ -1,0 +1,62 @@
+package smw;
+
+/**
+ *
+ * @author Seomyungwon
+ */
+public class Homework2 {
+    public static void main(String[] args) {
+        
+        Calculate calc = new Calculate();
+        
+        calc.run(1000, 0.10, 1);
+    }
+}
+
+
+class Calculate {
+    
+    double V, Q;
+    double r, R;
+    int P, p, N, n;
+    
+    float run(int p, double R, int n) {
+        P = p; 
+        r = R;
+        N = n;
+        int i, j, k ;
+        
+        for(k=1; k<11; k++) {
+            
+            System.out.println("P = "+ P);
+            
+            for(i=1; i<12; i++) {
+            
+            
+                System.out.print("r = " + (float)r + "               ");
+
+                for(j=1; j<11; j++) {
+                    Q = Math.pow(1+r, N);
+                    V = P * Q;
+                    System.out.print((int)V);
+                    System.out.print("  ");
+                                        
+                    N = N+1;
+                    
+                }           
+              
+                System.out.println("  ");
+                N = 1;       
+                r = r + 0.01; 
+                   
+            }
+        
+              P = P+1000;
+              r = 0.10;
+              System.out.println(" ");
+        }
+            return 0;
+    }
+
+    
+}
