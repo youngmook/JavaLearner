@@ -7,7 +7,9 @@
 package friday1;
 
 /**
- *
+ * This program calculates summation of principle-interest by differing
+ * P,n,r.
+ * @variable P: principle value, n: year of deposition, r: rate of interest 
  * @author syshin
  */
 public class Principle1 {
@@ -18,6 +20,9 @@ public class Principle1 {
         printMoneyTable(P,n,r);
         //printMoneyTableForEachP(P,n, r);
     }
+    /*
+    *This method prints money tables containing Values per each P, n, r;
+    */
     public static Integer printMoneyTable(int P,int n,double r){
         int i = 0;
         int newP;
