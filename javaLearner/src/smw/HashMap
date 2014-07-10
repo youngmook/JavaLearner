@@ -1,0 +1,60 @@
+package smw;
+
+import java.util.*;
+import java.util.HashMap;
+//import static java.util.Arrays.asList;
+
+/**
+ *
+ * @author Seomyungwon
+ */
+public class Homework3_Container_HashMap {
+
+    public static void main(String[] arg) {
+
+        ArrayListPlus arraylistplus = new ArrayListPlus();
+        arraylistplus.calculatorplus(1000, 1, 0.1);
+       
+        HashMap<Double, List<Integer>> moneyTableMap = new HashMap<>();
+
+        // for문 안에 들어가서 선언되는 ArrayList는 for문 밖으로 나왔을 때 없어짐.
+        for (int i = 0; i < 11; i++) {
+            java.util.ArrayList<Integer> theMoneyTableList = new java.util.ArrayList<>();
+
+            for (int j = 0; j < 10; j++) {
+                theMoneyTableList.add(arraylistplus.moneyTableList.get(10 * i + j));
+            }
+
+            moneyTableMap.put(0.1 + ((double) i * 0.01), theMoneyTableList);
+        }
+
+        System.out.println(moneyTableMap.get(0.2));
+
+    }
+}
+
+class ArrayListPlus {
+
+    java.util.ArrayList<Integer> moneyTableList = new java.util.ArrayList<>();
+
+    int P = 1000, N = 1, i, j;
+    double r = 0.1, V, newV;
+
+    double calculatorplus(int P, int N, double r) {
+
+        for (i = 0; i < 11; i++) {
+            for (j = 0; j < 10; j++) {
+
+                V = Math.pow(1 + r, N);
+                newV = P * V;
+                N = N + 1;
+                moneyTableList.add((int) newV);
+            }
+            N = 1;
+            r = r + 0.01;
+        }
+
+        return 0;
+    }
+
+}
