@@ -90,8 +90,10 @@ class Money{
     public String toString(){
         return "nation: " + nation+ " " + "amount: " + amount + "\n";
     }
+    /*
     for(Money element:moneyArray) {
     System.out.print(element);
     System.out.print("\t");
 }
+    */
 }
