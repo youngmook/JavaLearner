@@ -5,7 +5,7 @@
  */
 
 package friday1;
-
+import java.util.*;
 /**
  * This program calculates summation of principle-interest by differing
  * P,n,r.
@@ -17,6 +17,7 @@ public class Principle1 {
         int P=1000,n=1;
         //int v;
         double r=0.1;
+     
         printMoneyTable(P,n,r);
         //printMoneyTableForEachP(P,n, r);
     }
@@ -38,15 +39,31 @@ public class Principle1 {
         int i = 0,j=0;
         int tempn =0;
         double tempr =0.0;
+        
+        //printMap(mapVar);
+        ArrayList<ArrayList<Integer>> theTable = getMoneyTableArray(P, n, r);
+        printArray(theTable);
+    }
+    public static void printArray(ArrayList<ArrayList<Integer>> input2DArray){
+        for(ArrayList element: input2DArray) {
+            System.out.println(array2String(element));
+        }   
+    }
+    public static ArrayList<ArrayList<Integer>> getMoneyTableArray(Integer P, int n, double r){
+        int i = 0,j=0;
+        int tempn =0;
+        double tempr =0.0;
+        ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
         for(i=0;i<10;i++){
+            ArrayList<Integer> listElement= new ArrayList<Integer>();
             for(j=0;j<10;j++){
                 tempn = n + i*1;
                 tempr = r + j*0.01;
-                System.out.print(calculation(P,tempn,tempr));
-                System.out.print("\t");
+                listElement.add(calculation(P,tempn,tempr));
             }
-            System.out.println();
+            result.add(listElement);
         }
+        return result;
     }
     public static Integer calculation(int P, int n, double r) {
         double V;
@@ -55,4 +72,26 @@ public class Principle1 {
         V = P*Q;
         return (int)V;
     }
+    public static String array2String(ArrayList<Integer> array) {
+        String resultString = "";
+        for(Integer arrayElement:array) {
+            resultString = resultString + "\t" +arrayElement.toString();
+        }        
+        return resultString;
+    }
+}
+class Money{
+    int amount;
+    String nation;
+    Money(){
+        this.amount = 2000;
+        this.nation = "kor";
+    }
+    public String toString(){
+        return "nation: " + nation+ " " + "amount: " + amount + "\n";
+    }
+    for(Money element:moneyArray) {
+    System.out.print(element);
+    System.out.print("\t");
+}
 }
