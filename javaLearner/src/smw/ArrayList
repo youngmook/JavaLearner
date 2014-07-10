@@ -1,0 +1,48 @@
+package smw;
+
+// ArrayList 이용
+/**
+ *
+ * @author Seomyungwon
+ */
+public class Homework3_Container_ArrayList {
+
+    public static void main(String args[]) {
+
+        ArrayList arraylist = new ArrayList();
+        System.out.println("ArrayList!!");
+        arraylist.calculator(0.1, 1);
+
+    }
+}
+
+class ArrayList {
+
+    java.util.ArrayList<Integer> investmentList = new java.util.ArrayList<Integer>();
+
+    int P = 1000, N = 1, i, j;
+    double V, Q, r = 0.1;
+
+    double calculator(double r, int N) {
+
+        for (i = 0; i < 11; i++) {
+            for (j = 0; j < 10; j++) {
+
+                Q = Math.pow(1 + r, N);
+                V = P * Q;
+                N = N + 1;
+                investmentList.add((int) V);
+            }
+            N = 1;
+            r = r + 0.01;
+        }
+        int num = investmentList.size();
+        for (int cnt = 0; cnt < num; cnt++) {
+            int value = investmentList.get(cnt);
+            System.out.print("array" + "[" + cnt + "] = " + value);
+            System.out.println("\t");
+        }
+        return 0;
+    }
+
+}
