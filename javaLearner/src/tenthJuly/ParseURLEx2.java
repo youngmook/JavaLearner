@@ -18,39 +18,40 @@ public class ParseURLEx2 {
     public static void main(String[] args) throws MalformedURLException, IOException {
         //arguments that are used in this class.
         
-        URL target = new URL("https://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?q=nama&cid=962");
-        /*
-        *replace this part with 'getSynonymList' and 'printArray' methods.
-        *
+        
+        File inputFile = new File("E:\\Users\\grinn\\Downloads\\output_csv\\output_csv\\감초(만주감초).csv");
+        HashMap<String, String> cid2compMap = ParseURLExample.getCID2CompoundMap(inputFile);
+        for(String CID : cid2compMap.keySet()){
+            System.out.println(CID + "\t" + cid2compMap.get(CID));
+            System.out.println(CID+": "+getSynonymList(CID).toLowerCase().contains(cid2compMap.get(CID).toLowerCase()));
+        }
+    }
+    /*
+    @to do: implement this method.
+    it gets URL and returns ArrayList of synonyms.
+    */
+    public static String getSynonymList(String CID) throws MalformedURLException, IOException {
+        String result = "";
+        URL target = new URL("https://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?q=nama&cid=" + CID);
+        
+        /**replace this part with 'getSynonymList' and 'printArray' methods.
+        */
         URLConnection con;
         String startingPoint = "</form>";
         String separator = "\t";
         ParseURLEx2 theParser = new ParseURLEx2();
-
         try {
             con = target.openConnection();
             BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
             // skip lines until it reached to intended lines. loop ends at starting point.
             theParser.__skipLines(in, startingPoint);
             //Starting readLine();
-            System.out.println(theParser.__getSynonymString(in, separator, startingPoint));
+            result = theParser.__getSynonymString(in, separator, startingPoint);
         } catch (Exception e) {
             System.err.println(e);
         }
-        */
-    }
-    /*
-    @to do: implement this method.
-    it gets URL and returns ArrayList of synonyms.
-    */
-    public ArrayList<String> getSynonymList(URL theURL) throws MalformedURLException, IOException {
-        ArrayList<String> result = new ArrayList<String>();
-        /*
-        fill this space.
-        */
         return result;
     }; 
-
     private String __removeTags(String inputLine, String separator) {
         String result = inputLine.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", separator);
         result = result.replaceAll("\\&nbsp;", "");

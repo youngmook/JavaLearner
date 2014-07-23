@@ -22,6 +22,7 @@ public class ContainerBasis {
         System.out.println();
         System.out.println();
         System.out.println();
+        //Declaration of hashmap
         HashMap<Integer, String> studentMap = new HashMap<>();
         studentMap.put(1, "서명원");
         studentMap.put(0, "김민성");
@@ -33,6 +34,7 @@ public class ContainerBasis {
         System.out.println();
         System.out.println();
         System.out.println();
+        //iteration of hashmap using keySet method.
         for(Integer SN : studentMap.keySet()){
             System.out.println(studentMap.get(SN));
         }
