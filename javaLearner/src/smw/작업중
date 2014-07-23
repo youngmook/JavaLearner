@@ -1,0 +1,108 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package smw;
+
+import java.io.*;
+import java.io.BufferedReader;
+import static java.io.File.separator;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.*;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author Seomyungwon
+ */
+public class MatchingCompound {
+
+    public static void main(String[] args) throws IOException {
+
+        ReadCsvFile readCsvFile = new ReadCsvFile();
+        GetURL getUrl = new GetURL();
+        MatchingName matchingName = new MatchingName();
+        //getUrl.readURL();
+        getUrl.readURL();
+
+    }
+
+}
+
+class ReadCsvFile {
+
+    ArrayList<String> CID() throws FileNotFoundException, IOException {
+
+        ArrayList<String> cidCol = new ArrayList<>();
+        String line = "";
+
+        File inputFile = new File("C:\\Users\\Seomyungwon\\Dropbox\\Seomyungwon\\java practice\\방풍.csv");
+        //File outputFile = new File("C:\\Users\\Seomyungwon\\Dropbox\\Seomyungwon\\java practice\\방풍_copy.csv");
+        BufferedReader in = new BufferedReader(new FileReader(inputFile));
+        while ((line = in.readLine()) != null) {
+            String[] column = line.split(",");
+            cidCol.add(column[2]);
+
+        }
+        return cidCol;
+
+    }
+
+    ArrayList<String> Name() throws FileNotFoundException, IOException {
+        ArrayList<String> nameCol = new ArrayList<>();
+        String line = "";
+        File inputFile = new File("C:\\Users\\Seomyungwon\\Dropbox\\Seomyungwon\\java practice\\방풍.csv");
+        BufferedReader in = new BufferedReader(new FileReader(inputFile));
+        while ((line = in.readLine()) != null) {
+            String[] column = line.split(",");
+            nameCol.add(column[36]);
+        }
+        return nameCol;
+
+    }
+}
+
+class GetURL {
+
+    ArrayList<String> readURL() throws MalformedURLException, IOException {
+
+        String line = null;
+
+        ArrayList<String> urlText = new ArrayList<>();
+        URL target = new URL("http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?q=nama&cid=5318962");
+        InputStream is = target.openStream();
+        BufferedReader br = new BufferedReader(new InputStreamReader(is, "utf-8"));
+        while ((line = br.readLine()) != null) {
+            //System.out.println(line);
+            urlText.add(line);
+        }
+
+        String urlTextWithoutTag = urlText.get(urlText.size() - 1);
+        urlTextWithoutTag = urlTextWithoutTag.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", " ");
+        // urlTextWithoutTag = urlTextWithoutTag.replaceAll("\t", "\n");
+        //System.out.println(urlTextWithoutTag);
+        String[] theArray = urlTextWithoutTag.split(" ");
+
+        ArrayList<String> resultUrlText = new ArrayList<>();
+
+        for (int i = 0, End = theArray.length; i < End; i++) {
+            if (!theArray[i].isEmpty()) {
+                resultUrlText.add(theArray[i]);
+            }
+        }
+        //resultUrlText.add(urlTextWithoutTag);
+
+        System.out.println(resultUrlText.get(0));
+
+        return resultUrlText;
+
+    }
+}
+
+class MatchingName {
+
+}
